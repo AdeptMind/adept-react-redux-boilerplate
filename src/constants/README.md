@@ -1,0 +1,1 @@
+Constants and fixtures. Things like item types or test fixed files.
