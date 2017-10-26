@@ -8,7 +8,8 @@ Includes:
  - Redux
  - Redux-Thunk
  - Boostrap
- - Ducks Folder Structure Pattern
+ - Sass as the css preprocessor
+ - [Ducks](https://github.com/erikras/ducks-modular-redux) Folder Structure Pattern for Redux
  - Dotenv (see src/config/config.js and you need to create a `.env` file at root)
 
 
