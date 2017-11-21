@@ -1,0 +1,22 @@
+@import './variables';
+
+header{
+  height:$header-height; display:flex; align-items:center; padding:$gutter/2; background:#333;
+  a{color:$header-color}
+}
+
+.content-wrapper{
+  display:flex; width:100%; height:calc(100vh - #{$header-height});
+}
+
+.main-content{
+  padding:$gutter/2; flex:1;
+}
+
+.site-wrapper{
+  padding:0;
+}
+
+.sidebar{
+  background:#ddd; padding:$gutter/2; width:$sidebar-width;
+}

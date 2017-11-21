@@ -1,0 +1,12 @@
+@import './styles/variables';
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height:100%;
+  font-family: sans-serif;
+  * {box-sizing:border-box}
+}
+h1, h2, h3, h4, h5, h6, p{margin-top:0;}
+
+@import "./styles/core";

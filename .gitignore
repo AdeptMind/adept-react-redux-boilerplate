@@ -80,3 +80,5 @@ src/client/app/shared/config/env.config.js.map
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+src/**/*.css

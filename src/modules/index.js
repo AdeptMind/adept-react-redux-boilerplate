@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import timerReducer from './timer';
+import exampleReducer from './base';
 
 export default combineReducers({
-  routing: routerReducer,
-  timer: timerReducer,
+  adept : combineReducers({
+    routing: routerReducer,
+    example: exampleReducer,
+  })
 });

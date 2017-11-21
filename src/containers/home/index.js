@@ -1,21 +1,41 @@
-import React from 'react'
-import { push } from 'react-router-redux'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const Home = props => (
+
+const Home = ( props ) => (
   <div>
-    <h1>Home</h1>
-    <p>Welcome home!</p>
-    <button onClick={() => props.changePage()}>Go to about page via redux</button>
+    <h2>Adeptmind's Frontend Boilerplate</h2>
+    <h3>Editing:</h3>
+    <p>To start off the project, take a look at <pre>./src/containers/app/index.js</pre></p>
+    <h3>Includes:</h3>
+    <ul>
+      <li>React</li>
+      <li>Redux</li>
+      <li>Redux-Thunk</li>
+      <li>Boostrap</li>
+      <li>Sass as a CSS prepreocessor</li>
+      <li>Ducks Folder Structure Pattern</li>
+      <li>Dotenv (see src/config/config.js and you need to create a .env file at root)</li>
+    </ul>
   </div>
-)
+);
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  changePage: () => push('/about-us')
-}, dispatch)
+class HomeContainer extends Component{
 
-export default connect(
-  null, 
-  mapDispatchToProps
-)(Home)
+  render(){
+    return (
+      <Home />
+    )
+  }
+
+}
+
+const mapStateToProps = state => ({
+
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
