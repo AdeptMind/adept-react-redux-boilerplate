@@ -1,16 +1,28 @@
-$brand-primary : #b42554 !default;
-$brand-primary-opposite : #fff !default;
-$brand-secondary :#374048 !default;
-$brand-secondary-opposite: #fff !default;
+@import 'react-md/src/scss/react-md';
 
+// Colors
+$brand-primary: $md-pink-600 !default;
+$brand-primary-opposite: #fff !default;
+$brand-secondary: $md-pink-900 !default;
+$brand-secondary-opposite: #fff !default;
+$md-primary-color: $brand-primary;
+$md-secondary-color: $brand-secondary;
+$background-color: #eee;
+$paper-background-color:#fff;
+
+// Global
 $transition-prop: all !default;
 $transition-duration: 0.3s !default;
 $transition-ease: ease-out !default;
 
-$header-height:40px !default;
-$gutter:30px !default;
-
-$header-background-color:$brand-primary !default;
-$header-color:$brand-primary-opposite !default;
-
-$sidebar-width:300px !default;
+// Layout
+$header-height: 50px !default;
+$gutter: 30px !default;
+$sidebar-width: 300px !default;
+$content-gutter: $gutter !default;
+  // z-indexes
+  $header-z-index: 4;
+  $sidebar-z-index: 3;
+  $content-overlay-z-index: 2;
+  $content-z-index: 1;
+  $modal-z-index: 99;
