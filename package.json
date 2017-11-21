@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
     "dotenv": "^4.0.0",
     "eslint": "^4.6.1",
@@ -14,8 +13,8 @@
     "prop-types": "^15.6.0",
     "rc-progress": "^2.2.2",
     "react": "^15.6.1",
-    "react-bootstrap": "^0.31.2",
     "react-dom": "^15.6.1",
+    "react-md": "^1.2.8",
     "react-moment": "^0.6.5",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
@@ -26,13 +25,13 @@
   },
   "scripts": {
     "build": "npm run build-css && react-scripts build",
-    "build-css": "node-sass-chokidar src/ -o src/",
+    "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
     "eject": "react-scripts eject",
     "lint": "eslint . -c ./.eslintrc --ignore-pattern node_modules/",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "test": "react-scripts test --env=jsdom",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./node_modules src/ -o src/ --watch --recursive"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

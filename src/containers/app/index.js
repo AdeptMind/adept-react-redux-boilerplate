@@ -2,28 +2,35 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import { List, ListItem, Toolbar } from 'react-md';
 
 import Home from '../home';
+import logo from '../../logo.svg';
 
 import './app.css';
 
+const AppHeaderLogo = props => <img src={logo} style={{marginTop:3}} />;
+
 const App = ( { exampleValue } ) => {
   return (
-    <div className="container-fluid site-wrapper">
-      <header>
-        <div className="header-inner">
-          <Link to="/">Home</Link>
+    <div className="adept-app__site-wrapper">
+      <Toolbar
+        colored
+        className='adept-app__header'
+        title={<AppHeaderLogo />}
+        zDepth={2}
+      />
+      <main className='adept-app__content-wrapper'>
+        <div className="adept-app__sidebar">
+          <List className="md-paper md-paper--1">
+            <ListItem primaryText="Inbox" />
+            <ListItem primaryText="Starred" />
+            <ListItem primaryText="Sent Mail" />
+            <ListItem primaryText="Drafts" />
+          </List>
         </div>
-      </header>
-
-      <main className='content-wrapper'>
-        <div className="sidebar">
-          <p>Sidebar</p>
-          <p>Example from redux: `{exampleValue}`</p>
-
-        </div>
-        <div className="main-content">
+        <div className="adept-app__main-content">
           <Switch>
             <Route exact path='/' component={Home}></Route>
           </Switch>
