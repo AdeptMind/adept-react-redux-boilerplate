@@ -1,13 +1,14 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link, Route, Switch } from 'react-router-dom';
 
 import Home from '../home';
 
 import './app.css';
 
-const App = ( props ) => {
+const App = ( { exampleValue } ) => {
   return (
     <div className="container-fluid site-wrapper">
       <header>
@@ -18,7 +19,9 @@ const App = ( props ) => {
 
       <main className='content-wrapper'>
         <div className="sidebar">
-          Sidebar
+          <p>Sidebar</p>
+          <p>Example from redux: `{exampleValue}`</p>
+
         </div>
         <div className="main-content">
           <Switch>
@@ -30,18 +33,20 @@ const App = ( props ) => {
   );
 };
 
+App.propTypes = {
+  exampleValue: PropTypes.string.isRequired,
+};
+
 class AppContainer extends Component {
 
-  componentDidMount() {
-    this.props.start();
-  }
+  static propTypes = {
+    exampleValue: PropTypes.string.isRequired,
+  };
 
   render() {
     return (
       <App
-        resetTimer={this.props.reset}
-        startTimer={this.props.start}
-        stopTimer={this.props.stop}
+        exampleValue={this.props.exampleValue}
       />
     );
   }
@@ -49,6 +54,7 @@ class AppContainer extends Component {
 
 const mapStateToProps = ( state ) => ({
   // state variables to be injected into props goes here
+  exampleValue: state.adept.example.value
 });
 
 const mapDispatchToProps = ( dispatch ) => bindActionCreators({

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
 const Home = ( props ) => (
   <div>
     <h2>Adeptmind's Frontend Boilerplate</h2>
     <h3>Editing:</h3>
-    <p>To start off the project, take a look at <pre>./src/containers/app/index.js</pre></p>
+    <p>To start off the project, take a look at </p><pre>./src/containers/app/index.js</pre>
     <h3>Includes:</h3>
     <ul>
       <li>React</li>
@@ -25,9 +24,8 @@ class HomeContainer extends Component{
   render(){
     return (
       <Home />
-    )
+    );
   }
-
 }
 
 const mapStateToProps = state => ({

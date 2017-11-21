@@ -1,7 +1,7 @@
 import { types } from './actions';
 
 const initialState = {
-  value: ''
+  value: 'Redux example value'
 };
 
 const timerReducer = ( state = initialState, action ) => {
