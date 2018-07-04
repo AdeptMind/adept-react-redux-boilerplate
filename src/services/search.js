@@ -1,6 +1,6 @@
 import config from '../config/config';
 
-export const exampleGetRequest = options => {
+export const exampleGetRequest = (options) => {
   const endpoint = config.ENDPOINT_URL;
   const uri = endpoint + '/get';
 
@@ -10,13 +10,13 @@ export const exampleGetRequest = options => {
     method: 'POST',
     body: JSON.stringify(options),
   })
-    .then(res => {
+    .then((res) => {
       return res.json();
     })
-    .then(data => {
+    .then((data) => {
       return data;
     })
-    .catch(err => {
+    .catch((err) => {
       console.log('Could not fetch ontology data:', err);
     });
 };

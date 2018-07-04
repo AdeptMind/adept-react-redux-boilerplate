@@ -1,7 +1,8 @@
 const EDIT_VALUE = 'app/base/EDIT_VALUE';
 
-const editValue = payload => ({
-  type: EDIT_VALUE, payload
+const editValue = (payload) => ({
+  type: EDIT_VALUE,
+  payload
 });
 
 export const types = {

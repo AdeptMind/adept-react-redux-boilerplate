@@ -1,1 +1,45 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
 // Styles specific to the component in index.js should go here
+.adept-app {
+  &__content-wrapper {
+    @include transition(padding-left);
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding-top: $header-height + $content-gutter;
+    padding-left: $sidebar-width + $content-gutter;
+    padding-right: $content-gutter;
+    z-index: $content-z-index;
+
+    &--sidebar-closed {
+      padding-left: $sidebar-collapsed-width + $gutter;
+    }
+  }
+
+  &__header {
+    position: fixed;
+    width: 100%;
+    z-index: $header-z-index;
+    display: flex;
+    align-items: center;
+    padding: 5px $gutter/2;
+    max-height: $header-height;
+    top: 0;
+    left: 0;
+    img {
+      height: 100%;
+    }
+  }
+
+  &__main-content {
+    flex: 1;
+  }
+
+  &__site-wrapper {
+    padding: 0;
+    background-color: $background-color;
+    min-height: 100vh;
+  }
+}

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
@@ -14,5 +13,5 @@ it('renders without crashing', () => {
         <App />
       </ConnectedRouter>
     </Provider>);
-  ReactDOM.render(provider, target);
+  render(provider, target);
 });
