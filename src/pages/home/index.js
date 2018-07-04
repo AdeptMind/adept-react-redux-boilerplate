@@ -1,14 +1,18 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Paper } from 'react-md';
 
 import './home.css';
 
-const Home = ( props ) => (
+const Home = ({
+  filePath,
+}) => (
   <Paper className="adept-home-page">
     <h2>Adeptmind&quot;s Frontend Boilerplate</h2>
     <h3>Editing:</h3>
-    <p>To start off the project, take a look at </p><pre>./src/containers/app/index.js</pre>
+    <p>To start off the project, take a look at </p>
+    <pre>{filePath}</pre>
     <h3>Includes:</h3>
     <ul>
       <li>React</li>
@@ -22,21 +26,35 @@ const Home = ( props ) => (
   </Paper>
 );
 
-class HomeContainer extends Component{
+Home.propTypes = {
+  filePath: PropTypes.string,
+};
 
-  render(){
+Home.defaultProps = {
+  filePath: '',
+};
+
+class HomeContainer extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      filePath: './src/containers/app/index.js',
+    };
+  }
+
+  render() {
     return (
-      <Home />
+      <Home
+        filePath={this.state.filePath}
+      />
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({});
 
-});
-
-const mapDispatchToProps = dispatch => ({
-
-});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

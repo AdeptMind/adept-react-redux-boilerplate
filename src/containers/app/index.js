@@ -1,38 +1,54 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { List, ListItem, Toolbar } from 'react-md';
+import { Toolbar } from 'react-md';
 
-import Home from '../home';
+import Sidebar from '../sidebar';
+import { appRoutes, sidebarNavigation } from '../../constants';
+import { exampleOperations } from '../../modules/base';
+
 import logo from '../../logo.svg';
 
 import './app.css';
 
-const AppHeaderLogo = props => <img src={logo} style={{marginTop:3}} />;
+const AppHeaderLogo = (props) => (
+  <img
+    alt="Adeptmind"
+    src={logo}
+  />
+);
 
-const App = ( { exampleValue } ) => {
+const App = ({
+  exampleValue,
+  settings,
+  onLogoClick,
+}) => {
+  const contentClassnames = classNames('adept-app__content-wrapper', {
+    'adept-app__content-wrapper--sidebar-closed': settings.sidebar.collapsed,
+  });
   return (
     <div className="adept-app__site-wrapper">
       <Toolbar
         colored
         className='adept-app__header'
-        title={<AppHeaderLogo />}
+        title={<AppHeaderLogo onClick={onLogoClick} />}
         zDepth={2}
       />
-      <main className='adept-app__content-wrapper'>
-        <div className="adept-app__sidebar">
-          <List className="md-paper md-paper--1">
-            <ListItem primaryText="Inbox" />
-            <ListItem primaryText="Starred" />
-            <ListItem primaryText="Sent Mail" />
-            <ListItem primaryText="Drafts" />
-          </List>
-        </div>
+      <main className={contentClassnames}>
+        <Sidebar navigation={sidebarNavigation} />
         <div className="adept-app__main-content">
           <Switch>
-            <Route exact path='/' component={Home}></Route>
+            {appRoutes.map((route, i) => (
+              <Route
+                exact
+                key={i}
+                path={route.path}
+                component={route.component}
+              />
+            ))}
           </Switch>
         </div>
       </main>
@@ -42,33 +58,54 @@ const App = ( { exampleValue } ) => {
 
 App.propTypes = {
   exampleValue: PropTypes.string.isRequired,
+  settings: PropTypes.object.isRequired,
+  onLogoClick: PropTypes.func,
+};
+
+App.defaultProps = {
+  settings: {},
+  onLogoClick: () => {},
 };
 
 class AppContainer extends Component {
 
   static propTypes = {
     exampleValue: PropTypes.string.isRequired,
+    settings: PropTypes.string.isRequired,
   };
+
+  constructor(props) {
+    super(props);
+
+    this.handleLogoClick = this.handleLogoClick.bind(this);
+  }
+
+  handleLogoClick() {
+    console.log('Click');
+  }
 
   render() {
     return (
       <App
         exampleValue={this.props.exampleValue}
+        settings={this.props.settings}
+        onLogoClick={this.handleLogoClick}
       />
     );
   }
 }
 
-const mapStateToProps = ( state ) => ({
+const mapStateToProps = (state) => ({
   // state variables to be injected into props goes here
-  exampleValue: state.adept.example.value
+  exampleValue: state.adept.example.value,
+  settings: state.adept.settings,
 });
 
-const mapDispatchToProps = ( dispatch ) => bindActionCreators({
-  // ... module operations go here
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  ...exampleOperations,
 }, dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(AppContainer);

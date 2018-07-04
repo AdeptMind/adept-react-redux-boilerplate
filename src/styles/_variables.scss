@@ -8,7 +8,7 @@ $brand-secondary-opposite: #fff !default;
 $md-primary-color: $brand-primary;
 $md-secondary-color: $brand-secondary;
 $background-color: #eee;
-$paper-background-color:#fff;
+$paper-background-color: #fff;
 
 // Global
 $transition-prop: all !default;
@@ -20,9 +20,12 @@ $header-height: 50px !default;
 $gutter: 30px !default;
 $sidebar-width: 300px !default;
 $content-gutter: $gutter !default;
-  // z-indexes
-  $header-z-index: 4;
-  $sidebar-z-index: 3;
-  $content-overlay-z-index: 2;
-  $content-z-index: 1;
-  $modal-z-index: 99;
+$sidebar-width: 230px !default;
+$sidebar-collapsed-width: 55px !default;
+
+// z-indexes
+$header-z-index: 4;
+$sidebar-z-index: 3;
+$content-overlay-z-index: 2;
+$content-z-index: 1;
+$modal-z-index: 99;
