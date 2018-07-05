@@ -3,40 +3,25 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
-import { Toolbar } from 'react-md';
+import { Route, Switch, withRouter } from 'react-router-dom';
 
+import Header from '../../components/header';
 import Sidebar from '../sidebar';
 import { appRoutes, sidebarNavigation } from '../../constants';
-import { exampleOperations } from '../../modules/base';
-
-import logo from '../../logo.svg';
+import { userOperations } from '../../modules/users';
+import { historyShape, userShape } from '../../constants/shapes';
 
 import './app.css';
 
-const AppHeaderLogo = (props) => (
-  <img
-    alt="Adeptmind"
-    src={logo}
-  />
-);
-
 const App = ({
-  exampleValue,
   settings,
-  onLogoClick,
 }) => {
   const contentClassnames = classNames('adept-app__content-wrapper', {
     'adept-app__content-wrapper--sidebar-closed': settings.sidebar.collapsed,
   });
   return (
     <div className="adept-app__site-wrapper">
-      <Toolbar
-        colored
-        className='adept-app__header'
-        title={<AppHeaderLogo onClick={onLogoClick} />}
-        zDepth={2}
-      />
+      <Header />
       <main className={contentClassnames}>
         <Sidebar navigation={sidebarNavigation} />
         <div className="adept-app__main-content">
@@ -57,7 +42,6 @@ const App = ({
 };
 
 App.propTypes = {
-  exampleValue: PropTypes.string.isRequired,
   settings: PropTypes.object.isRequired,
   onLogoClick: PropTypes.func,
 };
@@ -70,26 +54,31 @@ App.defaultProps = {
 class AppContainer extends Component {
 
   static propTypes = {
-    exampleValue: PropTypes.string.isRequired,
-    settings: PropTypes.string.isRequired,
+    getMyUser: PropTypes.func.isRequired,
+    history: historyShape.isRequired,
+    settings: PropTypes.object.isRequired,
+    user: userShape,
   };
 
-  constructor(props) {
-    super(props);
+  static defaultProps = {
+    user: null,
+  };
 
-    this.handleLogoClick = this.handleLogoClick.bind(this);
+  componentDidMount() {
+    this.props.getMyUser();
+    this.locationChangeListener = this.props.history.listen( () => {
+      window.scrollTo(0, 0);
+    });
   }
 
-  handleLogoClick() {
-    console.log('Click');
+  componentWillUnmount() {
+    this.locationChangeListener();
   }
 
   render() {
     return (
       <App
-        exampleValue={this.props.exampleValue}
         settings={this.props.settings}
-        onLogoClick={this.handleLogoClick}
       />
     );
   }
@@ -97,15 +86,15 @@ class AppContainer extends Component {
 
 const mapStateToProps = (state) => ({
   // state variables to be injected into props goes here
-  exampleValue: state.adept.example.value,
   settings: state.adept.settings,
+  user: state.adept.users.me,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  ...exampleOperations,
+  ...userOperations,
 }, dispatch);
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(AppContainer);
+)(AppContainer));

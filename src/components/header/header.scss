@@ -1,0 +1,18 @@
+@import '../../styles/variables';
+
+.adept-app {
+
+  &__header {
+    padding: $gutter/3;
+  }
+
+  &__site-title {
+    display: flex;
+    align-items: center;
+
+    img {
+      height: calc(#{$md-toolbar-height} - (#{$gutter} / 3 * 2));
+      margin-top: 4px;
+    }
+  }
+}
