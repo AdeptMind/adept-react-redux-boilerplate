@@ -1,0 +1,26 @@
+@import '../../styles/variables';
+
+.adept-app__header-nav {
+  display: flex;
+  align-items: center;
+
+  .md-avatar {
+    width: calc(#{$md-toolbar-height} - (#{$gutter} / 3 * 2));
+    height: calc(#{$md-toolbar-height} - (#{$gutter} / 3 * 2));
+    background: #fff;
+  }
+
+  .md-icon-text {
+    padding-left: $gutter/3;
+  }
+
+  .adept-dataset-selector {
+    margin-right: $gutter/2;
+    width: 250px;
+  }
+
+  .adept-dataset-selector__trigger{
+    border: none;
+    max-width: 195px;
+  }
+}
