@@ -71,7 +71,7 @@ class AppContainer extends Component {
 
   static propTypes = {
     exampleValue: PropTypes.string.isRequired,
-    settings: PropTypes.string.isRequired,
+    settings: PropTypes.object.isRequired,
   };
 
   constructor(props) {
