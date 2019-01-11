@@ -47,7 +47,6 @@ ts-node
 dist
 dev
 docs
-lib
 test
 tmp
 
